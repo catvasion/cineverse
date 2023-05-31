@@ -8,7 +8,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     return (
-<Card minH = '100vh'>
+<Card >
 <VStack  spacing='4' >
 {/* <Center> */}
 
