@@ -1,16 +1,24 @@
-import { useState } from "react";
+import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { Box, Input, IconButton, Spinner, HStack } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useBreakpointValue } from "@chakra-ui/react";
 
-const SearchBar = ({ onSearch }) => {
+interface SearchBarProps {
+  onSearch: (searchTerm: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       onSearch(searchTerm);
     }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
   const inputSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
@@ -21,7 +29,7 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Search for a Movie"
         size={inputSize}
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
       <IconButton
