@@ -1,13 +1,6 @@
 import React from "react"
 import { Card, CardHeader, CardBody, CardFooter, Text, Stack, HStack, VStack, Image, Box, Flex, Center } from '@chakra-ui/react'
-
-interface Movie {
-    Year: string
-    Poster: string 
-    Title: string
-    Type:string
-
-}
+import { Movie } from "../lib/types/movies"
 
 interface MovieCardProps {
     movie: Movie
