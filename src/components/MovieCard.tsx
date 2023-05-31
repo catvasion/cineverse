@@ -8,7 +8,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     return (
-<Card >
+<Card>
 <VStack  spacing='4' >
 {/* <Center> */}
 
@@ -23,7 +23,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     <CardFooter>
         <VStack>
         <Text textTransform='uppercase'>{movie.Type}</Text>
-        <Text noOfLines={2} 
+        <Text noOfLines={2} fontSize='l' as='b' 
          >{movie.Title} 
         
   </Text>

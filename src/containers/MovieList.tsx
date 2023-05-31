@@ -13,7 +13,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies, search }) => {
   return (
     <Box>
       {movies.length > 0 && search ? (
-        <SimpleGrid columns={[1, 2, 2, 3]} spacing={4}>
+        <SimpleGrid boxShadow='2xl'columns={[1, 2, 2, 3]} spacing={4}>
           {movies.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
           ))}
