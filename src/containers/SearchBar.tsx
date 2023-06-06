@@ -22,27 +22,33 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleFilterChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setFilterOption(event.target.value)
-  }
+  // const handleFilterChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  //   setFilterOption(event.target.value)
+  // }
 
   const inputSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
   
-  const selectPlaceholder = inputSize === 'sm' ?  '' : "Filter Options"
 
   return (
-    <HStack spacing={4} mb={4}>
+    <HStack spacing={4} mb={4} display='flex'>
       <InputGroup size={inputSize}>
         <Input
           placeholder="Search"
+          _placeholder={{ opacity: 0.7, color: 'inherit' }}
           size={inputSize}
           value={searchTerm}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          borderColor='pink'
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          color='white'
+          fontWeight="bold"
+      
+          
         />
         
         </InputGroup>
-        <IconButton
+        <IconButton        
           aria-label="Search database"
           icon={isLoading ? <Spinner /> : <SearchIcon />}
           onClick={() => {
