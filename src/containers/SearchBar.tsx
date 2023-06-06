@@ -34,25 +34,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     <HStack spacing={4} mb={4}>
       <InputGroup size={inputSize}>
         <Input
-          placeholder="Search for a Movie"
+          placeholder="Search"
           size={inputSize}
           value={searchTerm}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
-        <InputRightElement width='auto'>
-         <Select
-            size={inputSize}
-            value={filterOption}
-            onChange={handleFilterChange}
-            placeholder={selectPlaceholder}
-            variant='unstyled' 
-          >
-          <option value=''></option>
-          <option value='year'>Year</option>
-          <option value='type'>Type</option>
-          </Select>   
-        </InputRightElement>
+        
         </InputGroup>
         <IconButton
           aria-label="Search database"
