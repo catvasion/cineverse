@@ -31,6 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   // }
 
   const inputSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
+  const fontSize = useBreakpointValue({ base: "md", md: "lg", lg: "xl" });
 
 
 
@@ -59,11 +60,12 @@ const getColor = () => {
           fontWeight="bold"
           focusBorderColor={getColor()}
           color={getColor()}
+          fontSize={fontSize}
         />
         
         </InputGroup>
         <IconButton  
-              
+          
           aria-label="Search database"
           icon={isLoading ? <Spinner /> : <SearchIcon />}
           onClick={() => {
