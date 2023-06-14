@@ -37,12 +37,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
 const DarkModeColor = "#7FD2FF"
 const LightModeColor = "#121B7D"
+const DarkPair = "#F0FFF0" 
+const LightPair = "#444444"
 
 const getColor = () => {
   if (colorMode === 'light') {
       return (LightModeColor)
   } else {
       return DarkModeColor
+  }
+}
+
+const getPair = () => {
+  if (colorMode === 'light') {
+      return (LightPair)
+  } else {
+      return DarkPair
   }
 }
   
@@ -52,20 +62,24 @@ const getColor = () => {
       <InputGroup size={inputSize}>
         <Input
           placeholder="Search"
-          // _placeholder={{ opacity: 0.7, color: 'inherit' }}
+          borderColor={getPair()} 
+          _placeholder={{ opacity: 0.9, color: getPair() }}
           size={inputSize}
           value={searchTerm}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           fontWeight="bold"
-          focusBorderColor={getColor()}
+          focusBorderColor={getPair()}
           color={getColor()}
           fontSize={fontSize}
+          variant='outline'
         />
         
         </InputGroup>
         <IconButton  
-          
+          bgColor='transparent'
+          color={getPair()}
+          // color={getColor()}
           aria-label="Search database"
           icon={isLoading ? <Spinner /> : <SearchIcon />}
           onClick={() => {
