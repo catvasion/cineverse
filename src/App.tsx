@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Center, Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { Header, SearchBar, MovieList } from "./containers";
 import { Movie } from "./lib/types/movies";
@@ -31,11 +31,17 @@ const App: React.FC = () => {
 
   return (
     <Box p={4}>
-      <Header />
+    <Header />
+    <Center h={!searched ? "60vh" : undefined}>
       <SearchBar onSearch={searchMovies} />
-      {searched && movies.length === 0 && <p>No movies found.</p>}
-      {movies.length > 0 && <MovieList movies={movies} search={searched} />}
-    </Box>
+    </Center>
+    {searched && movies.length === 0 && (
+      <Center h="60vh">
+        <Text fontSize="xl">No movies found.</Text>
+      </Center>
+    )}
+    {movies.length > 0 && <MovieList movies={movies} search={searched} />}
+  </Box>
   );
 };
 
