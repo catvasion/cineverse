@@ -10,7 +10,7 @@ const Header: React.FC = () => {
       <Box>
         <ToggleLogo src='getLogoSrc()'/>
       </Box>
-      <Box ml={6}>
+      <Box ml={6} mt={-6}>
         <PreferencesFlyout />
       </Box>
       </Box>
