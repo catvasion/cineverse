@@ -1,7 +1,18 @@
-* {
-    cursor: url(../src/assets/cursor.png), auto;
-  }
+div {
+  cursor: url(../src/assets/cursor.png), auto;
+}
 
-  .custom-cursor:hover {
-    cursor: url(../src/assets/cursor_pointer.png), auto;
-  }
+input,
+[role="button"],
+button {
+  cursor: url(../src/assets/cursor_pointer.png), pointer !important;
+}
+
+/* [role="button"],
+[role="button"]:hover,
+button,
+button:hover,
+a,
+a:hover {
+  cursor: url(../src/assets/cursor_pointer.png), pointer !important;
+} */
