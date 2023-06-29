@@ -1,0 +1,7 @@
+* {
+    cursor: url(../src/assets/cursor.png), auto;
+  }
+
+  .custom-cursor:hover {
+    cursor: url(../src/assets/cursor_pointer.png), auto;
+  }
