@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Header, SearchBar, MovieList } from "./containers";
 import { Movie } from "./lib/types/movies";
 import { WarningIcon } from "@chakra-ui/icons";
-import './custom-cursor.css'
+import "./custom-cursor.css";
 
-const API_URL = "http://www.omdbapi.com?apikey=c20579b4";
+const API_URL = "https://www.omdbapi.com?apikey=c20579b4";
 
 const App: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -30,20 +30,21 @@ const App: React.FC = () => {
     }
   }, [movies]);
 
-
   return (
     <Box p={4}>
-    <Header />
-    <Center h={!searched ? "60vh" : undefined}>
-      <SearchBar onSearch={searchMovies} />
-    </Center>
-    {searched && movies.length === 0 && (
-      <Center h="60vh">
-        <Text fontSize="xl">No movies found. <WarningIcon/></Text>
+      <Header />
+      <Center h={!searched ? "60vh" : undefined}>
+        <SearchBar onSearch={searchMovies} />
       </Center>
-    )}
-    {movies.length > 0 && <MovieList movies={movies} search={searched} />}
-  </Box>
+      {searched && movies.length === 0 && (
+        <Center h="60vh">
+          <Text fontSize="xl">
+            No movies found. <WarningIcon />
+          </Text>
+        </Center>
+      )}
+      {movies.length > 0 && <MovieList movies={movies} search={searched} />}
+    </Box>
   );
 };
 
