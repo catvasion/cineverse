@@ -5,7 +5,7 @@ import { Movie } from "./lib/types/movies";
 import { WarningIcon } from "@chakra-ui/icons";
 import "./custom-cursor.css";
 
-const API_URL = "https://www.omdbapi.com?apikey=c20579b4";
+const API_URL = `${process.env.OMDB_API_URL}${process.env.OMDB_API_TOKEN}`;
 
 const App: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
