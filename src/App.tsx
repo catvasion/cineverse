@@ -33,7 +33,7 @@ const App: React.FC = () => {
   return (
     <Box p={4}>
       <Header />
-      <Center h={!searched ? "60vh" : undefined}>
+      <Center h={!searched ? "40vh" : undefined}>
         <SearchBar onSearch={searchMovies} />
       </Center>
       {searched && movies.length === 0 && (

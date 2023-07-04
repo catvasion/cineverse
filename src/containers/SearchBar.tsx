@@ -4,7 +4,7 @@ import {
   Input,
   IconButton,
   Spinner,
-  HStack,
+  Stack,
   InputGroup,
   InputRightElement,
   Select,
@@ -64,7 +64,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <HStack spacing={4} mb={4} display="flex">
+    <Stack spacing={4} mb={4} display="flex" direction={["column", "row"]}>
       <InputGroup size={inputSize}>
         <Input
           placeholder="Search"
@@ -79,7 +79,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           color={getColor()}
           fontSize={fontSize}
           variant="outline"
-          className="custom-input"
+          className="custom-input rounded-full"
         />
       </InputGroup>
       <IconButton
@@ -93,7 +93,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           onSearch(searchTerm, filterOption);
         }}
       />
-    </HStack>
+    </Stack>
   );
 };
 export default SearchBar;
