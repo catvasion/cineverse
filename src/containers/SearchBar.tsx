@@ -1,13 +1,10 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import {
-  Box,
   Input,
   IconButton,
   Spinner,
   Stack,
   InputGroup,
-  InputRightElement,
-  Select,
   useColorMode,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";

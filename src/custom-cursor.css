@@ -7,12 +7,3 @@ input,
 button {
   cursor: url(../src/assets/cursor_pointer.png), pointer !important;
 }
-
-/* [role="button"],
-[role="button"]:hover,
-button,
-button:hover,
-a,
-a:hover {
-  cursor: url(../src/assets/cursor_pointer.png), pointer !important;
-} */
