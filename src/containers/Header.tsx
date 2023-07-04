@@ -1,4 +1,4 @@
-import { Heading, Image, Box } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
 import { PreferencesFlyout, ToggleLogo } from "../components";
 import React from "react";
 

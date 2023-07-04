@@ -1,34 +1,24 @@
-import { useColorMode, Input } from '@chakra-ui/react';
-import React, {FC} from "react"
+import { useColorMode } from "@chakra-ui/react";
+import React, { FC } from "react";
 
 interface ToggleLogoProps {
-    focusBorderColor:string 
+  focusBorderColor: string;
 }
-
-
 
 const ToggleInputBorder: FC<ToggleLogoProps> = () => {
-    const { colorMode } = useColorMode()
+  const { colorMode } = useColorMode();
 
+  const DarkModeCocusBorderColor = "#7FD2FF";
+  const LightModeCocusBorderColor = "#121B7D";
 
-const DarkModeCocusBorderColor = "#7FD2FF"
-const LightModeCocusBorderColor = "#121B7D"
-
-const getBoderColor = () => {
-    if (colorMode === 'light') {
-        return (LightModeCocusBorderColor)
+  const getBoderColor = () => {
+    if (colorMode === "light") {
+      return LightModeCocusBorderColor;
     } else {
-        return (DarkModeCocusBorderColor)
+      return DarkModeCocusBorderColor;
     }
-}
-return (
-    <>
-    
-     focusBorderColor={getBoderColor()}
-    
-    </>
+  };
+  return <>focusBorderColor={getBoderColor()}</>;
+};
 
-)
-}
-
-export default ToggleInputBorder
+export default ToggleInputBorder;
