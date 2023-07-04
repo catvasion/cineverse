@@ -9,32 +9,27 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useBreakpointValue } from "@chakra-ui/react";
-// import { ToggleInputBorder } from "../components";
 import "./customInput.css";
 
 interface SearchBarProps {
-  onSearch: (searchTerm: string, filterOption: string) => void;
+  onSearch: (searchTerm: string) => void;
+  isLoading: boolean;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterOption, setFilterOption] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
   const { colorMode } = useColorMode();
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      onSearch(searchTerm, filterOption);
+      onSearch(searchTerm);
     }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-
-  // const handleFilterChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   setFilterOption(event.target.value)
-  // }
 
   const inputSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
   const fontSize = useBreakpointValue({ base: "md", md: "lg", lg: "xl" });
@@ -83,14 +78,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         role="button"
         bgColor="transparent"
         color={getPair()}
-        // color={getColor()}
         aria-label="Search database"
-        icon={isLoading ? <Spinner /> : <SearchIcon role="button" />}
+        icon={isLoading ? <Spinner /> : <SearchIcon />}
         onClick={() => {
-          onSearch(searchTerm, filterOption);
+          onSearch(searchTerm);
         }}
+        isLoading={isLoading}
       />
     </Stack>
   );
 };
+
 export default SearchBar;

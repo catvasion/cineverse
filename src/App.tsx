@@ -10,21 +10,23 @@ const API_URL = `${process.env.REACT_APP_OMDB_API_URL}${process.env.REACT_APP_OM
 const App: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searched, setSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchMovies = async (title: string) => {
+    setIsLoading(true);
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
+    setSearched(true);
 
     if (data?.Search) {
       setMovies(data.Search);
     } else {
       setMovies([]);
     }
-    setSearched(true);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    // Check if there are existing movies before setting searched to true
     if (movies.length > 0) {
       setSearched(true);
     }
@@ -34,7 +36,10 @@ const App: React.FC = () => {
     <Box p={4}>
       <Header />
       <Center h={!searched ? "40vh" : undefined}>
-        <SearchBar onSearch={searchMovies} />
+        <SearchBar
+          onSearch={searchMovies}
+          isLoading={isLoading && movies.length === 0}
+        />
       </Center>
       {searched && movies.length === 0 && (
         <Center h="60vh">
