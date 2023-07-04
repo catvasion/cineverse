@@ -16,8 +16,8 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
-    <Card>
-      <VStack spacing="4">
+    <Card boxShadow="xl">
+      <VStack spacing={2}>
         {/* <Center> */}
 
         <CardHeader>{movie.Year}</CardHeader>
