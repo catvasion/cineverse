@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/cineverse/static/css/main.884c2932.css",
-    "main.js": "/cineverse/static/js/main.e2336cc2.js",
+    "main.js": "/cineverse/static/js/main.f10e3630.js",
     "static/media/logo.png": "/cineverse/static/media/logo.3c83a8d05cf7a36038c7.png",
     "static/media/logo_light.png": "/cineverse/static/media/logo_light.31886dc6423af483fe61.png",
     "static/media/logo_dark.png": "/cineverse/static/media/logo_dark.bd6bfb549cc9c7d0b4dc.png",
     "index.html": "/cineverse/index.html",
     "main.884c2932.css.map": "/cineverse/static/css/main.884c2932.css.map",
-    "main.e2336cc2.js.map": "/cineverse/static/js/main.e2336cc2.js.map"
+    "main.f10e3630.js.map": "/cineverse/static/js/main.f10e3630.js.map"
   },
   "entrypoints": [
     "static/css/main.884c2932.css",
-    "static/js/main.e2336cc2.js"
+    "static/js/main.f10e3630.js"
   ]
 }
