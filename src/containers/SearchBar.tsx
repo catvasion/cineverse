@@ -5,6 +5,7 @@ import {
   Spinner,
   Stack,
   InputGroup,
+  InputRightElement,
   useColorMode,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -56,9 +57,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading }) => {
   };
 
   return (
-    <Stack spacing={4} mb={4} display="flex" direction={"row"}>
+    <Stack spacing={4} mb={4} display="flex" direction={"row"} px={14}>
       <InputGroup size={inputSize}>
         <Input
+          borderStyle="solid"
           placeholder="Search"
           borderColor={getPair()}
           _placeholder={{ opacity: 0.9, color: getPair() }}
@@ -67,25 +69,31 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading }) => {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           fontWeight="bold"
-          focusBorderColor={getPair()}
+          focusBorderColor={`${getPair()}`}
           color={getColor()}
           fontSize={fontSize}
           variant="outline"
-          className="custom-input rounded-full"
+          className=" rounded-full"
         />
+
+        <InputRightElement>
+          <IconButton
+            size={inputSize}
+            role="button"
+            bgColor="transparent"
+            _hover={{
+              background: "transparent",
+            }}
+            color={getPair()}
+            aria-label="Search database"
+            icon={isLoading ? <Spinner /> : <SearchIcon />}
+            onClick={() => {
+              onSearch(searchTerm);
+            }}
+            isLoading={isLoading}
+          />
+        </InputRightElement>
       </InputGroup>
-      <IconButton
-        size={inputSize}
-        role="button"
-        bgColor="transparent"
-        color={getPair()}
-        aria-label="Search database"
-        icon={isLoading ? <Spinner /> : <SearchIcon />}
-        onClick={() => {
-          onSearch(searchTerm);
-        }}
-        isLoading={isLoading}
-      />
     </Stack>
   );
 };
