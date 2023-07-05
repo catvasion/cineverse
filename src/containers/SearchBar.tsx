@@ -56,7 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading }) => {
   };
 
   return (
-    <Stack spacing={4} mb={4} display="flex" direction={["column", "row"]}>
+    <Stack spacing={4} mb={4} display="flex" direction={"row"}>
       <InputGroup size={inputSize}>
         <Input
           placeholder="Search"
@@ -75,6 +75,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, isLoading }) => {
         />
       </InputGroup>
       <IconButton
+        size={inputSize}
         role="button"
         bgColor="transparent"
         color={getPair()}
