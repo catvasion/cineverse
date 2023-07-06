@@ -17,20 +17,21 @@ Welcome to Cineverse, a React project written in TypeScript and powered by the C
 
 ### Project Structure:
 ```sh
-public/             # The public directory containing static assets
-  -index.html       # HTML template for the application
-  -favicon.png      # Favicon image
+📂 public/            # Public directory containing static assets
+  └── index.html      # HTML template for the application
+  └── favicon.png     # Favicon image
 
-src/                # The source directory
-  -assets/          # Public assets such as images and icons
-  -components/      # Reusable UI components
-  -containers/      # Container components that orchestrate data and UI
-  -lib/             # Interfaces and utility functions
-  -App.tsx          # The main application component
-  -custom-cursor.css # Styling for custom cursor
-  -declarations.d.tsx # Type declarations
-  -index.tsx        # The entry point of the application
-  -theme.tsx        # Theme configuration
+📂 src/               # Source directory
+  └── assets/         # Public assets such as images and icons
+  └── components/     # Reusable UI components
+  └── containers/     # Container components that orchestrate data and UI
+  └── lib/            # Interfaces and utility functions
+  └── App.tsx         # Main application component
+  └── custom-cursor.css # Styling for custom cursor
+  └── declarations.d.tsx # Type declarations
+  └── index.tsx       # Entry point of the application
+  └── theme.tsx       # Theme configuration
+
 ```
 
 ### Sections:
