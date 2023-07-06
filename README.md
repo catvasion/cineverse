@@ -5,7 +5,7 @@
   <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen02.png" alt="preview" width="400">  
 </p>
 <p align="center">
-<a href="https://catvasion.github.io/cineverse/">
+<a href="https://catvasion.github.io/cineverse/" target=”_blank”>
     Live Demo
   </a>
 </p>
