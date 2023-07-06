@@ -37,7 +37,7 @@ src/                # The source directory
 
 #### Home
 
-Discover a vast collection of movies, TV shows, and video games effortlessly. Explore different genres, browse top picks, and find your next entertainment obsession.
+Discover a vast collection of movies, TV shows, and video games effortlessly. Browse, explore different genres, and find your next entertainment obsession.
 
 #### Preferences
 
