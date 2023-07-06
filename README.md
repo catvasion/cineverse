@@ -5,9 +5,9 @@
   <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen02.png" alt="preview" width="400">  
 </p>
 
- [Live Demo](https://catvasion.github.io/cineverse/){:target="_blank"}
-
-    
+<div align="center">
+  <a href="https://catvasion.github.io/cineverse/"> Live demo</a>
+</div>
  
 
 
