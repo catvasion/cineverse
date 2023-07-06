@@ -4,11 +4,12 @@
   <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen01.png" alt="preview" width="400">
   <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen02.png" alt="preview" width="400">  
 </p>
-<p align="center">
- [Live Demo](href="https://catvasion.github.io/cineverse/"){:target="_blank"}>
+
+ [Live Demo](https://catvasion.github.io/cineverse/){:target="_blank"}
+
     
  
-</p>
+
 
 ## Table of Contents
 - [Introduction](#introduction)
