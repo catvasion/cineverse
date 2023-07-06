@@ -1,5 +1,9 @@
 # Cineverse
-![cineverse](https://github.com/catvasion/cineverse/blob/main/public/screens/cineverse.png)
+
+<p align="center">
+  <img src="" alt="preview" width="400">
+</p>
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
