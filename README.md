@@ -1,8 +1,8 @@
 # Cineverse
 
 <p align="center">
-  <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen01.png" alt="preview" width="400">
-  <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen02.png" alt="preview" width="400">  
+  <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen01.png" alt="preview" height="300">
+  <img src="https://github.com/catvasion/cineverse/blob/main/public/screens/screen02.png" alt="preview" height="300">  
 </p>
 
 <div align="center">
