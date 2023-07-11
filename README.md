@@ -18,7 +18,7 @@
 - [Credits](#credits)
 
 ## Introduction
-Welcome to Cineverse, a React project written in TypeScript and powered by the Chakra UI library. Cineverse is your gateway to the silver screen, where you can explore a world of movies, TV shows, and video games all in one convenient place. Immerse yourself in the captivating world of cinema and effortlessly discover a wide range of entertainment options. Customize your experience with dark mode and enjoy a visually appealing interface as you embark on your cinematic journey with Cineverse.
+Welcome to Cineverse, a React project written in TypeScript and powered by the Chakra UI library. Cineverse is your gateway to the silver screen, where you can explore a world of movies, TV shows, and video games all in one convenient place. Immerse yourself in the captivating world of cinema and effortlessly discover a wide range of entertainment options. Customise your experience with dark mode and enjoy a visually appealing interface as you embark on your cinematic journey with Cineverse.
 
 ## Installation 
 ```sh
@@ -53,7 +53,7 @@ Discover a vast collection of movies, TV shows, and video games effortlessly. Br
 
 #### Preferences
 
-Personalize your Cineverse experience with the dark mode option. Enjoy a cinematic atmosphere with a sleek and visually appealing interface.
+Personalise your Cineverse experience with the dark mode option. Enjoy a cinematic atmosphere with a sleek and visually appealing interface.
 
 
 ## Credits
