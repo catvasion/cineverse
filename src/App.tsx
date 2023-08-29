@@ -30,13 +30,17 @@ const App: React.FC = () => {
 		if (movieData && movieData.length > 0) {
 			setAreMovies(true);
 		}
+		if (searchTerm.length === 0 || movieData === undefined) {
+			setAreMovies(false);
+		}
+		console.log(movieData);
 	}, [movieData]);
 
 	const handleResponseMessage = () => {
 		if (isError) {
 			return 'An Error occured during your movie search';
 		}
-		if (hasSearched && !areMovies) {
+		if (!areMovies) {
 			return 'No movies found';
 		}
 		return '';
@@ -52,10 +56,9 @@ const App: React.FC = () => {
 					setSearchTerm={setSearchTerm} // Pass setSearchTerm to SearchBar
 				/>
 			</Center>
-			{(hasSearched && !areMovies && !isLoading) ||
-				(isError && (
-					<ActionResponse responseMessage={handleResponseMessage()} />
-				))}
+			{(hasSearched && !areMovies && !isLoading) || isError ? (
+				<ActionResponse responseMessage={handleResponseMessage()} />
+			) : null}
 			{hasSearched && areMovies && <MovieList movies={movieData as Movie[]} />}
 		</Box>
 	);
