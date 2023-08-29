@@ -1,9 +1,15 @@
-import api from './api';
+import createApiCall from './api';
 import { AxiosRequestConfig } from 'axios';
 
-export const searchForMovies = (term: string, config: AxiosRequestConfig) => {
+const dynamicBaseUrl = process.env.REACT_APP_OMDB_API_BASE_URL;
+const apiCall = createApiCall(dynamicBaseUrl);
+
+export const searchForMovies = async (
+	term: string,
+	config: AxiosRequestConfig = {}
+) => {
 	try {
-		return api.get(
+		return apiCall.get(
 			'',
 			(config = {
 				params: {

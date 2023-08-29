@@ -1,15 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 
-const axiosParams = {
-	baseURL: process.env.REACT_APP_OMDB_API_BASE_URL,
+const createApiCall = (baseURL: any): AxiosInstance => {
+	const axiosInstance = axios.create({
+		baseURL,
+	});
+
+	return axiosInstance;
 };
 
-const axiosInstance = axios.create(axiosParams);
-
-const api = (axios: AxiosInstance) => {
-	return {
-		get: (url: string, config = {}) => axios.get(url, config),
-	};
-};
-
-export default api(axiosInstance);
+export default createApiCall;
