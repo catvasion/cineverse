@@ -1,4 +1,4 @@
-import { Box, Center, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Text } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { Header, SearchBar, MovieList } from './containers';
 import { ActionResponse } from './components';
@@ -30,7 +30,6 @@ const App: React.FC = () => {
 		if (movieData && movieData.length > 0) {
 			setAreMovies(true);
 		}
-		console.log(movieData);
 	}, [movieData]);
 
 	const handleResponseMessage = () => {
