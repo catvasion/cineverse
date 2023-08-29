@@ -1,56 +1,65 @@
-import { Box, Center, Text } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import { Header, SearchBar, MovieList } from "./containers";
-import { Movie } from "./lib/types/movies";
-import { WarningIcon } from "@chakra-ui/icons";
-import "./custom-cursor.css";
+import { Box, Center, Text } from '@chakra-ui/react';
+import React, { useState, useEffect } from 'react';
+import { Header, SearchBar, MovieList } from './containers';
+import { ActionResponse } from './components';
+import { Movie } from './lib/types/movies';
 
-const API_URL = `${process.env.REACT_APP_OMDB_API_URL}${process.env.REACT_APP_OMDB_API_TOKEN}`;
+import { searchForMovies } from './services/omdbApi';
+import { useApiCall } from './hooks/useApiCall';
+import './custom-cursor.css';
 
 const App: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [searched, setSearched] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+	const [hasSearched, setHasSearched] = useState(false);
+	const [areMovies, setAreMovies] = useState(false);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [movies, setMovies] = useState<Movie[]>([]);
 
-  const searchMovies = async (title: string) => {
-    setIsLoading(true);
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
-    setSearched(true);
+	const { state: searchForMoviesState, performApiCall } = useApiCall();
+	const { movieData, isLoading, isError } = searchForMoviesState;
 
-    if (data?.Search) {
-      setMovies(data.Search);
-    } else {
-      setMovies([]);
-    }
-    setIsLoading(false);
-  };
+	const searchMovies = async () => {
+		await performApiCall({
+			apiFunction: searchForMovies,
+			args: [searchTerm],
+			properties: 'Search',
+		});
+		setHasSearched(true);
+	};
 
-  useEffect(() => {
-    if (movies.length > 0) {
-      setSearched(true);
-    }
-  }, [movies]);
+	useEffect(() => {
+		if (movieData && movieData.length > 0) {
+			setAreMovies(true);
+		}
+		console.log(movieData);
+	}, [movieData]);
 
-  return (
-    <Box p={4}>
-      <Header />
-      <Center h={!searched ? "40vh" : undefined}>
-        <SearchBar
-          onSearch={searchMovies}
-          isLoading={isLoading && movies.length === 0}
-        />
-      </Center>
-      {searched && movies.length === 0 && (
-        <Center h="60vh">
-          <Text fontSize="xl">
-            No movies found. <WarningIcon />
-          </Text>
-        </Center>
-      )}
-      {movies.length > 0 && <MovieList movies={movies} search={searched} />}
-    </Box>
-  );
+	const handleResponseMessage = () => {
+		if (isError) {
+			return 'An Error occured during your movie search';
+		}
+		if (hasSearched && !areMovies) {
+			return 'No movies found';
+		}
+		return '';
+	};
+	return (
+		<Box p={4}>
+			<Header />
+			<Center h={!areMovies && !hasSearched ? '40vh' : undefined}>
+				<SearchBar
+					onSearch={searchMovies}
+					isLoading={isLoading && !areMovies}
+					searchTerm={searchTerm} // Pass searchTerm to SearchBar
+					setSearchTerm={setSearchTerm} // Pass setSearchTerm to SearchBar
+				/>
+			</Center>
+			{(hasSearched && !areMovies && !isLoading) ||
+				(isError && (
+					<ActionResponse responseMessage={handleResponseMessage()} />
+				))}
+			{hasSearched && areMovies && <MovieList movies={movieData as Movie[]} />}
+		</Box>
+	);
 };
 
 export default App;
