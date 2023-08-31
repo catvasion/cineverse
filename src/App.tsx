@@ -1,6 +1,6 @@
-import { Box, Center } from '@chakra-ui/react';
+import { Box, Center, useDisclosure } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
-import { Header, SearchBar, MovieList } from './containers';
+import { Header, SearchBar, MovieList, MovieDetailsModal } from './containers';
 import { ActionResponse, MovieTrailerPlayer } from './components';
 import { Movie } from './lib/types/movies';
 import { MovieTrailer } from './lib/types/movieTrailer';
@@ -92,7 +92,14 @@ const App: React.FC = () => {
 	return (
 		<Box p={4}>
 			<Header />
-			{hasClickedMovieCard && <MovieTrailerPlayer trailerUrl={trailerUrl} />}
+
+			{hasClickedMovieCard && (
+				<MovieDetailsModal
+					onClose={() => setHasClickedMovieCard(false)}
+					isOpen={true}
+					trailerUrl={trailerUrl}
+				/>
+			)}
 			<Center h={!areMovies && !hasSearched ? '40vh' : undefined}>
 				<SearchBar
 					onSearch={searchMovies}
