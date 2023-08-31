@@ -4,12 +4,15 @@ import { AxiosRequestConfig } from 'axios';
 const dynamicBaseUrl = process.env.REACT_APP_MOVIESDATABASE_API_BASE_URL;
 const apiCall = createApiCall(dynamicBaseUrl);
 
-export const movieTrailers = async (config: AxiosRequestConfig = {}) => {
+export const movieTrailers = async (
+	movieId: string,
+	config: AxiosRequestConfig = {}
+) => {
 	try {
 		return apiCall.get(
-			'titles',
+			`titles/${movieId}`,
 			(config = {
-				params: {},
+				params: { info: 'trailer' },
 				headers: {
 					'X-RapidAPI-Key': process.env.REACT_APP_MOVIESDATABASE_API_TOKEN,
 					'X-RapidAPI-Host': process.env.REACT_APP_MOVIESDATABASE_API_HOST,

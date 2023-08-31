@@ -1,9 +1,9 @@
 div {
-  cursor: url(../src/assets/cursor.png), auto;
+	cursor: url(../src/assets/cursor.png), auto;
 }
 
 input,
-[role="button"],
+[role='button'],
 button {
-  cursor: url(../src/assets/cursor_pointer.png), pointer !important;
+	cursor: url(../src/assets/cursor_pointer.png), pointer !important;
 }

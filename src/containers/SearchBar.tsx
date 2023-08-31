@@ -16,7 +16,7 @@ import './customInput.css';
 interface SearchBarProps {
 	onSearch: () => void;
 	isLoading: boolean;
-	searchTerm: string; // Receive searchTerm from App
+	searchTerm: string;
 	setSearchTerm: (searchTerm: string) => void; // Receive setSearchTerm from App
 }
 
