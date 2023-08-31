@@ -8,6 +8,7 @@ export const ApiState = {
 
 interface ApiCallState<T> {
 	movieData: T[];
+	movieTrailerData?: T[];
 	isLoading: boolean;
 	isError: boolean;
 }
@@ -16,10 +17,13 @@ interface PerformApiCallOptions {
 	apiFunction: any;
 	args: string[];
 	properties: string;
+	headers?: string;
+	movieId?: string;
 }
 
 const initialState: ApiCallState<any> = {
 	movieData: [],
+	movieTrailerData: [],
 	isLoading: false,
 	isError: false,
 };
@@ -59,6 +63,8 @@ export function useApiCall<T>() {
 		apiFunction,
 		args,
 		properties,
+		headers,
+		movieId,
 	}: PerformApiCallOptions) => {
 		try {
 			dispatch({ type: ApiState.API_INIT });

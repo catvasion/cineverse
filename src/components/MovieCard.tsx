@@ -12,9 +12,10 @@ import { Movie } from '../lib/types/movies';
 
 interface MovieCardProps {
 	movie: Movie;
+	onMovieClick: (movieId: string) => void;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie, onMovieClick }) => {
 	return (
 		<Card boxShadow='xl'>
 			<VStack spacing={2}>
@@ -30,6 +31,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 								: 'https://via.placeholder.com/400'
 						}
 						alt={movie.Title}
+						onClick={() => {
+							onMovieClick(movie.imdbID);
+						}}
 					/>
 				</CardBody>
 				<CardFooter>

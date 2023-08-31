@@ -6,7 +6,7 @@ const ToggleColor: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
 	const handleToggleColorMode = () => {
 		toggleColorMode();
-		onClose(); // Call the onClose callback function to close the drawer
+		onClose();
 	};
 
 	return (
