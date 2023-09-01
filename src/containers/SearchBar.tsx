@@ -17,7 +17,7 @@ interface SearchBarProps {
 	onSearch: () => void;
 	isLoading: boolean;
 	searchTerm: string;
-	setSearchTerm: (searchTerm: string) => void; // Receive setSearchTerm from App
+	setSearchTerm: (searchTerm: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({

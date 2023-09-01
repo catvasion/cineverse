@@ -2,13 +2,12 @@ import {
 	Modal,
 	ModalOverlay,
 	ModalContent,
-	ModalHeader,
-	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
 	Flex,
 	Box,
 	Spacer,
+	useBreakpointValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { MovieTrailerPlayer } from '../components';
@@ -26,24 +25,23 @@ const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
 }) => {
 	let size = '6xl';
 
+	const boxWidth = useBreakpointValue({ base: 'auto', md: 'lg' });
+
 	return (
 		<>
-			<Modal size={size} isOpen={isOpen} onClose={onClose}>
-				<ModalOverlay bg='none' />
-				<ModalContent boxShadow='xl'>
-					<ModalHeader>Modal Title</ModalHeader>
+			<Modal size={size} isOpen={isOpen} onClose={onClose} isCentered>
+				<ModalOverlay bg='rgba(0, 0, 0, 0.5)' />
+				<ModalContent boxShadow='xl' display='flex'>
 					<ModalCloseButton />
-					<ModalBody>
-						<Flex>
-							<Box w='md'>Box 1</Box>
+					<ModalBody p={10}>
+						<Flex flexDirection={{ base: 'column', md: 'row' }}>
+							<Box width={boxWidth} height='auto'></Box>
 							<Spacer />
-							<Box w='lg' minW='20%'>
+							<Box width={boxWidth} height='auto'>
 								<MovieTrailerPlayer trailerUrl={trailerUrl} />
 							</Box>
 						</Flex>
 					</ModalBody>
-
-					<ModalFooter></ModalFooter>
 				</ModalContent>
 			</Modal>
 		</>
