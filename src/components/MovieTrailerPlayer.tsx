@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AspectRatio } from '@chakra-ui/react';
+
+import { NoTrailerAvailableCard } from './index';
 
 interface MovieTrailerPlayerProps {
 	trailerUrl: any;
@@ -8,14 +10,21 @@ interface MovieTrailerPlayerProps {
 const MovieTrailerPlayer: React.FC<MovieTrailerPlayerProps> = ({
 	trailerUrl,
 }) => {
+	const [hasTrailerUrl] = useState(typeof trailerUrl !== 'undefined');
+
 	return (
-		<AspectRatio w='full' ratio={1}>
-			<iframe
-				title='naruto'
-				src={`${trailerUrl}${'?autoplay=1&mute=1'}`}
-				allowFullScreen
-				allow='autoplay'
-			/>
+		<AspectRatio w='full' ratio={16 / 9}>
+			{hasTrailerUrl ? (
+				<iframe
+					title='trailer'
+					src={`${trailerUrl}${'?autoplay=1&mute=1'}`}
+					allowFullScreen
+					allow='autoplay'
+					width='100%'
+				/>
+			) : (
+				<NoTrailerAvailableCard />
+			)}
 		</AspectRatio>
 	);
 };
