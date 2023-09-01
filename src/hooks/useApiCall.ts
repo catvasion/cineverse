@@ -16,7 +16,7 @@ interface ApiCallState<T> {
 interface PerformApiCallOptions {
 	apiFunction: any;
 	args: string[];
-	properties: string;
+	properties: string[];
 	headers?: string;
 	movieId?: string;
 }
@@ -59,6 +59,7 @@ function apiCallReducer<T>(
 
 export function useApiCall<T>() {
 	const [state, dispatch] = useReducer(apiCallReducer, initialState);
+
 	const performApiCall = async ({
 		apiFunction,
 		args,
@@ -69,9 +70,15 @@ export function useApiCall<T>() {
 		try {
 			dispatch({ type: ApiState.API_INIT });
 			const response = await apiFunction(...args);
+
+			let payload = response.data;
+			for (const property of properties) {
+				payload = payload[property];
+			}
+
 			dispatch({
 				type: ApiState.API_SUCCESS,
-				payload: response.data[properties],
+				payload,
 			});
 		} catch (error) {
 			dispatch({ type: ApiState.API_ERROR });

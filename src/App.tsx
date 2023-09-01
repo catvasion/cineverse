@@ -16,9 +16,7 @@ const App: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [movies, setMovies] = useState<Movie[]>([]);
 	const [hasClickedMovieCard, setHasClickedMovieCard] = useState(false);
-	const [trailerUrl, setTrailerUrl] = useState<MovieTrailer>({
-		trailerUrl: '',
-	});
+	const [isTrailerUrl, setIsTrailerUrl] = useState(false);
 
 	const { state: searchForMoviesState, performApiCall } = useApiCall();
 	const {
@@ -41,7 +39,7 @@ const App: React.FC = () => {
 		await performApiCall({
 			apiFunction: searchForMovies,
 			args: [searchTerm],
-			properties: 'Search',
+			properties: ['Search'],
 			headers: '',
 		});
 
@@ -49,24 +47,17 @@ const App: React.FC = () => {
 	};
 
 	const getMovieDetails = async (movieId: string) => {
-		console.log(movieId);
-
 		await performMovieTrailersApiCall({
 			apiFunction: movieTrailers,
 			args: [movieId],
-			properties: 'results',
+			properties: ['results', 'trailer'],
 			headers: '',
 			movieId: movieId,
 		});
+		setHasClickedMovieCard(true);
 
-		if (typeof movieTrailersData === 'object') {
-			for (const key in movieTrailersData) {
-				if (key === 'trailer') {
-					setTrailerUrl(movieTrailersData[key] as MovieTrailer);
-					console.log(trailerUrl);
-					setHasClickedMovieCard(true);
-				}
-			}
+		if (movieTrailersData) {
+			setIsTrailerUrl(true);
 		}
 	};
 
@@ -97,7 +88,7 @@ const App: React.FC = () => {
 				<MovieDetailsModal
 					onClose={() => setHasClickedMovieCard(false)}
 					isOpen={true}
-					trailerUrl={trailerUrl}
+					trailerUrl={movieTrailersData}
 				/>
 			)}
 			<Center h={!areMovies && !hasSearched ? '40vh' : undefined}>
