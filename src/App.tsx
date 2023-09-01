@@ -16,7 +16,6 @@ const App: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [movies, setMovies] = useState<Movie[]>([]);
 	const [hasClickedMovieCard, setHasClickedMovieCard] = useState(false);
-	const [isTrailerUrl, setIsTrailerUrl] = useState(false);
 
 	const { state: searchForMoviesState, performApiCall } = useApiCall();
 	const {
@@ -55,10 +54,6 @@ const App: React.FC = () => {
 			movieId: movieId,
 		});
 		setHasClickedMovieCard(true);
-
-		if (movieTrailersData) {
-			setIsTrailerUrl(true);
-		}
 	};
 
 	useEffect(() => {

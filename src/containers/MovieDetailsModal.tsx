@@ -6,12 +6,9 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-	Button,
-	useDisclosure,
 	Flex,
 	Box,
 	Spacer,
-	UseDisclosureProps,
 } from '@chakra-ui/react';
 import React from 'react';
 import { MovieTrailerPlayer } from '../components';
@@ -40,19 +37,13 @@ const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
 						<Flex>
 							<Box w='md'>Box 1</Box>
 							<Spacer />
-							<Box w='lg'>
-								Trailer
+							<Box w='lg' minW='20%'>
 								<MovieTrailerPlayer trailerUrl={trailerUrl} />
 							</Box>
 						</Flex>
 					</ModalBody>
 
-					<ModalFooter>
-						{/* <Button colorScheme='blue' mr={3} onClick={onClose}>
-							Close
-						</Button>
-						<Button variant='ghost'>Secondary Action</Button> */}
-					</ModalFooter>
+					<ModalFooter></ModalFooter>
 				</ModalContent>
 			</Modal>
 		</>
