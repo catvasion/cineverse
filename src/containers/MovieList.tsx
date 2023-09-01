@@ -14,7 +14,11 @@ const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
 	}
 	return (
 		<Box>
-			<SimpleGrid columns={[1, 2, 2, 3]} spacing={10} p={4}>
+			<SimpleGrid
+				columns={[2, 2, 3, 4, 5]}
+				spacing={{ base: 4, md: 10 }}
+				p={{ base: 4, md: 10 }}
+			>
 				{movies.map((movie) => (
 					<MovieCard
 						key={movie.imdbID}

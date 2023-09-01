@@ -1,8 +1,19 @@
 import React from 'react';
-import { Image, Card, CardBody, Box, Text } from '@chakra-ui/react';
+import {
+	Image,
+	Card,
+	CardBody,
+	Box,
+	Text,
+	useBreakpointValue,
+} from '@chakra-ui/react';
 import { youtube_icon } from '../assets/';
 
 const NoTrailerAvailableCard = () => {
+	const cardWidth = useBreakpointValue({ base: '100%', md: 'lg', lg: 'lg' });
+	const cardHeight = useBreakpointValue({ base: 'auto', md: 'lg', lg: 'lg' });
+	const cardPadding = useBreakpointValue({ base: 4, md: 10 });
+
 	return (
 		<Card>
 			<CardBody>
@@ -15,11 +26,11 @@ const NoTrailerAvailableCard = () => {
 					flexDirection='column'
 					alignItems='center'
 					justifyContent='center'
-					width='lg'
-					height='lg'
-					p='10'
+					width={cardWidth}
+					height={cardHeight}
+					p={cardPadding}
 				>
-					<Text mb='10px'>Trailer Video Not Available.</Text>
+					<Text mb='10px'>Video Trailer Not Available.</Text>
 					<Image
 						src={youtube_icon}
 						width='100px'
