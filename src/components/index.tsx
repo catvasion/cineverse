@@ -6,3 +6,4 @@ export { default as ToggleInputBorder } from './ToggleInputBorder';
 export { default as ActionResponse } from './ActionResponse';
 export { default as MovieTrailerPlayer } from './MovieTrailerPlayer';
 export { default as NoTrailerAvailableCard } from './NoTrailerAvailableCard';
+export { default as MovieDetailsCard } from './MovieDetailsCard';
