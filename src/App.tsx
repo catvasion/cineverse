@@ -1,8 +1,8 @@
-import { Box, Center, useDisclosure } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { Header, SearchBar, MovieList, MovieDetailsModal } from './containers';
-import { ActionResponse, MovieTrailerPlayer } from './components';
-import { Movie, MovieSearch, MovieDetail } from './lib/types/movies';
+import { ActionResponse } from './components';
+import { MovieSearch, MovieDetail } from './lib/types/movies';
 import { MovieTrailerDetail } from './lib/types/movieTrailer';
 
 import { searchForMovies, fetchMovieDetailsById } from './services/omdbApi';
@@ -124,15 +124,18 @@ const App: React.FC = () => {
 		<Box p={4}>
 			<Header />
 
-			{hasClickedMovieCard && isMovieTrailerDetail(movieTrailersData) && (
-				<div>
-					<MovieDetailsModal
-						onClose={() => setHasClickedMovieCard(false)}
-						isOpen={true}
-						trailerUrl={movieTrailersData.results.trailer}
-					/>
-				</div>
-			)}
+			{hasClickedMovieCard &&
+				isMovieTrailerDetail(movieTrailersData) &&
+				isMovieDetail(fetchMovieDetailsByIdData) && (
+					<div>
+						<MovieDetailsModal
+							onClose={() => setHasClickedMovieCard(false)}
+							isOpen={true}
+							trailerUrl={movieTrailersData.results.trailer}
+							movieDetails={fetchMovieDetailsByIdData}
+						/>
+					</div>
+				)}
 			<Center h={!areMovies && !hasSearched ? '40vh' : undefined}>
 				<SearchBar
 					onSearch={searchMovies}

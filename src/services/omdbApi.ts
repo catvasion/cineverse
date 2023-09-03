@@ -24,7 +24,6 @@ export const searchForMovies = async (
 };
 
 export const fetchMovieDetailsById = async (
-	// term: string,
 	movieId: string,
 	config: AxiosRequestConfig = {}
 ) => {

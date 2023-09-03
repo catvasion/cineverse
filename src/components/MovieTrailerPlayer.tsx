@@ -13,7 +13,7 @@ const MovieTrailerPlayer: React.FC<MovieTrailerPlayerProps> = ({
 	const [hasTrailerUrl] = useState(typeof trailerUrl === 'string');
 
 	return (
-		<Box w='100%' mx='auto'>
+		<Box mx='auto' margin='0'>
 			<AspectRatio ratio={16 / 9}>
 				{hasTrailerUrl ? (
 					<iframe
@@ -23,6 +23,7 @@ const MovieTrailerPlayer: React.FC<MovieTrailerPlayerProps> = ({
 						allow='autoplay'
 						width='100%'
 						height='100%'
+						style={{ margin: '0', border: 'none' }}
 					/>
 				) : (
 					<NoTrailerAvailableCard />

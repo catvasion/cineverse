@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from '@chakra-ui/react';
-import { Movie, MovieSearch } from '../lib/types/movies';
+import { MovieSearch } from '../lib/types/movies';
 
 interface MovieCardProps {
 	movie: MovieSearch;
