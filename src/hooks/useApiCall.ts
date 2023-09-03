@@ -1,4 +1,6 @@
 import { useReducer } from 'react';
+import { MovieSearch, MovieDetail } from '../lib/types/movies';
+import { MovieTrailerDetail } from '../lib/types/movieTrailer';
 
 export const ApiState = {
 	API_INIT: 0,
@@ -6,9 +8,8 @@ export const ApiState = {
 	API_ERROR: 2,
 };
 
-interface ApiCallState<T> {
-	movieData: T[];
-	movieTrailerData?: T[];
+interface ApiCallState {
+	movieData: MovieSearch[] | MovieTrailerDetail | MovieDetail;
 	isLoading: boolean;
 	isError: boolean;
 }
@@ -16,22 +17,21 @@ interface ApiCallState<T> {
 interface PerformApiCallOptions {
 	apiFunction: any;
 	args: string[];
-	properties: string[];
+	properties?: string[];
 	headers?: string;
 	movieId?: string;
 }
 
-const initialState: ApiCallState<any> = {
+const initialState: ApiCallState = {
 	movieData: [],
-	movieTrailerData: [],
 	isLoading: false,
 	isError: false,
 };
 
-function apiCallReducer<T>(
-	state: ApiCallState<T>,
+function apiCallReducer(
+	state: ApiCallState,
 	action: { type: number; payload?: any }
-): ApiCallState<T> {
+): ApiCallState {
 	switch (action.type) {
 		case ApiState.API_INIT:
 			return {
@@ -57,7 +57,7 @@ function apiCallReducer<T>(
 	}
 }
 
-export function useApiCall<T>() {
+export function useApiCall() {
 	const [state, dispatch] = useReducer(apiCallReducer, initialState);
 
 	const performApiCall = async ({
@@ -72,8 +72,11 @@ export function useApiCall<T>() {
 			const response = await apiFunction(...args);
 
 			let payload = response.data;
-			for (const property of properties) {
-				payload = payload[property];
+
+			if (properties) {
+				for (const property of properties) {
+					payload = payload[property];
+				}
 			}
 
 			dispatch({

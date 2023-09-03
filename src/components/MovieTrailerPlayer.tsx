@@ -4,13 +4,13 @@ import { AspectRatio, Box } from '@chakra-ui/react';
 import { NoTrailerAvailableCard } from './index';
 
 interface MovieTrailerPlayerProps {
-	trailerUrl: any;
+	trailerUrl: string;
 }
 
 const MovieTrailerPlayer: React.FC<MovieTrailerPlayerProps> = ({
 	trailerUrl,
 }) => {
-	const [hasTrailerUrl] = useState(typeof trailerUrl !== 'undefined');
+	const [hasTrailerUrl] = useState(typeof trailerUrl === 'string');
 
 	return (
 		<Box w='100%' mx='auto'>

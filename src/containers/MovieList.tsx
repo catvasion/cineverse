@@ -1,10 +1,10 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import { MovieCard } from '../components';
 import React from 'react';
-import { Movie } from '../lib/types/movies';
+import { Movie, MovieSearch } from '../lib/types/movies';
 
 interface MovieListProps {
-	movies: Movie[];
+	movies: MovieSearch[];
 	onMovieClick: (movieId: string) => void;
 }
 

@@ -13,9 +13,9 @@ import React from 'react';
 import { MovieTrailerPlayer } from '../components';
 
 interface MovieDetailsModalProps {
-	trailerUrl: any;
+	trailerUrl: string;
 	isOpen: boolean;
-	onClose: any;
+	onClose: () => void;
 }
 
 const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({

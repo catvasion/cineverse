@@ -1,3 +1,11 @@
 export interface MovieTrailer {
-	trailerUrl: any;
+	trailerUrl: string;
+}
+
+export interface MovieTrailerDetail {
+	results: {
+		_id: string;
+		id: string;
+		trailer: string;
+	};
 }
