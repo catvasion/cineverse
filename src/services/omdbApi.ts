@@ -22,3 +22,23 @@ export const searchForMovies = async (
 		throw error;
 	}
 };
+
+export const fetchMovieDetailsById = async (
+	// term: string,
+	movieId: string,
+	config: AxiosRequestConfig = {}
+) => {
+	try {
+		return apiCall.get(
+			'',
+			(config = {
+				params: {
+					apikey: `${process.env.REACT_APP_OMDB_API_TOKEN}`,
+					i: movieId,
+				},
+			})
+		);
+	} catch (error) {
+		throw error;
+	}
+};

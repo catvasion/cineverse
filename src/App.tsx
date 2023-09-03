@@ -2,10 +2,10 @@ import { Box, Center, useDisclosure } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { Header, SearchBar, MovieList, MovieDetailsModal } from './containers';
 import { ActionResponse, MovieTrailerPlayer } from './components';
-import { Movie } from './lib/types/movies';
-import { MovieTrailer } from './lib/types/movieTrailer';
+import { Movie, MovieSearch, MovieDetail } from './lib/types/movies';
+import { MovieTrailerDetail } from './lib/types/movieTrailer';
 
-import { searchForMovies } from './services/omdbApi';
+import { searchForMovies, fetchMovieDetailsById } from './services/omdbApi';
 import { movieTrailers } from './services/movieDataBaseApi'; //
 import { useApiCall } from './hooks/useApiCall';
 import './custom-cursor.css';
@@ -14,8 +14,33 @@ const App: React.FC = () => {
 	const [hasSearched, setHasSearched] = useState(false);
 	const [areMovies, setAreMovies] = useState(false);
 	const [searchTerm, setSearchTerm] = useState('');
-	const [movies, setMovies] = useState<Movie[]>([]);
 	const [hasClickedMovieCard, setHasClickedMovieCard] = useState(false);
+
+	const isMovieSearch = (
+		data: MovieSearch[] | MovieTrailerDetail | MovieDetail
+	): data is MovieSearch[] => {
+		return Array.isArray(data) && data.length > 0;
+	};
+
+	const isMovieTrailerDetail = (
+		data: MovieSearch[] | MovieTrailerDetail | MovieDetail
+	): data is MovieTrailerDetail => {
+		return (
+			typeof data === 'object' &&
+			'results' in data &&
+			typeof data.results === 'object'
+		);
+	};
+
+	const isMovieDetail = (
+		data: MovieSearch[] | MovieTrailerDetail | MovieDetail
+	): data is MovieDetail => {
+		return (
+			typeof data === 'object' &&
+			'Actors' in data &&
+			typeof data.Actors === 'string'
+		);
+	};
 
 	const { state: searchForMoviesState, performApiCall } = useApiCall();
 	const {
@@ -34,6 +59,16 @@ const App: React.FC = () => {
 		isError: isErrorTrailers,
 	} = movieTrailersState;
 
+	const {
+		state: fetchMovieDetailsByIdState,
+		performApiCall: performFetchMovieDetailsByIdApiCall,
+	} = useApiCall();
+	let {
+		movieData: fetchMovieDetailsByIdData,
+		isLoading: isLoadingMovieData,
+		isError: isErrorMovieData,
+	} = fetchMovieDetailsByIdState;
+
 	const searchMovies = async () => {
 		await performApiCall({
 			apiFunction: searchForMovies,
@@ -46,20 +81,30 @@ const App: React.FC = () => {
 	};
 
 	const getMovieDetails = async (movieId: string) => {
-		await performMovieTrailersApiCall({
-			apiFunction: movieTrailers,
-			args: [movieId],
-			properties: ['results', 'trailer'],
-			headers: '',
-			movieId: movieId,
-		});
+		await Promise.all([
+			performMovieTrailersApiCall({
+				apiFunction: movieTrailers,
+				args: [movieId],
+				headers: '',
+				movieId: movieId,
+			}),
+			performFetchMovieDetailsByIdApiCall({
+				apiFunction: fetchMovieDetailsById,
+				args: [movieId],
+				headers: '',
+			}),
+		]);
+
 		setHasClickedMovieCard(true);
 	};
 
 	useEffect(() => {
-		if (movieSearchData && movieSearchData.length > 0) {
-			setAreMovies(true);
+		if (isMovieSearch(movieSearchData)) {
+			if (movieSearchData && movieSearchData.length > 0) {
+				setAreMovies(true);
+			}
 		}
+
 		if (searchTerm.length === 0 || movieSearchData === undefined) {
 			setAreMovies(false);
 		}
@@ -79,12 +124,14 @@ const App: React.FC = () => {
 		<Box p={4}>
 			<Header />
 
-			{hasClickedMovieCard && (
-				<MovieDetailsModal
-					onClose={() => setHasClickedMovieCard(false)}
-					isOpen={true}
-					trailerUrl={movieTrailersData}
-				/>
+			{hasClickedMovieCard && isMovieTrailerDetail(movieTrailersData) && (
+				<div>
+					<MovieDetailsModal
+						onClose={() => setHasClickedMovieCard(false)}
+						isOpen={true}
+						trailerUrl={movieTrailersData.results.trailer}
+					/>
+				</div>
 			)}
 			<Center h={!areMovies && !hasSearched ? '40vh' : undefined}>
 				<SearchBar
@@ -98,11 +145,8 @@ const App: React.FC = () => {
 			isError ? (
 				<ActionResponse responseMessage={handleResponseMessage()} />
 			) : null}
-			{hasSearched && areMovies && (
-				<MovieList
-					onMovieClick={getMovieDetails}
-					movies={movieSearchData as Movie[]}
-				/>
+			{hasSearched && areMovies && isMovieSearch(movieSearchData) && (
+				<MovieList onMovieClick={getMovieDetails} movies={movieSearchData} />
 			)}
 		</Box>
 	);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image } from '@chakra-ui/react';
-import { Movie } from '../lib/types/movies';
+import { Movie, MovieSearch } from '../lib/types/movies';
 
 interface MovieCardProps {
-	movie: Movie;
+	movie: MovieSearch;
 	onMovieClick: (movieId: string) => void;
 }
 
