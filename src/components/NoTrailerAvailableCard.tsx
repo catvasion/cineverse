@@ -30,7 +30,7 @@ const NoTrailerAvailableCard = () => {
 					height={cardHeight}
 					p={cardPadding}
 				>
-					<Text mb='10px'>Video Trailer Not Available.</Text>
+					<Text mb='10px'>Trailer Not Available.</Text>
 					<Image
 						src={youtube_icon}
 						width='100px'
