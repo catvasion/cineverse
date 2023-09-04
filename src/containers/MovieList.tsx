@@ -15,8 +15,9 @@ const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
 	return (
 		<Box>
 			<SimpleGrid
-				columns={[2, 2, 3, 4, 5]}
+				columns={[2, 3, 4, 4, 5]}
 				spacing={{ base: 4, md: 10 }}
+				justifyItems='center'
 				p={{ base: 4, md: 10 }}
 			>
 				{movies.map((movie) => (
