@@ -12,6 +12,7 @@ import {
 	Stack,
 	Flex,
 } from '@chakra-ui/react';
+
 import React from 'react';
 import { MovieTrailerPlayer, MovieDetailsCard } from '../components';
 import { MovieDetail } from '../lib/types/movies';
@@ -21,6 +22,20 @@ interface MovieDetailsModalProps {
 	movieDetails: MovieDetail;
 	isOpen: boolean;
 	onClose: () => void;
+}
+function minutesToHours(runTime: string) {
+	let minutesString = runTime.replace(/[^0-9]/g, '');
+	let minutesIsNumber = parseFloat(minutesString);
+	const hours = Math.floor(minutesIsNumber / 60);
+	const remainingMinutes = minutesIsNumber % 60;
+
+	if (hours > 0 && remainingMinutes > 0) {
+		return `${hours}h ${remainingMinutes}m`;
+	} else if (hours > 0) {
+		return `${hours}h`;
+	} else {
+		return `${remainingMinutes}m`;
+	}
 }
 
 const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
@@ -43,15 +58,19 @@ const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
 			>
 				<Flex flexDirection='column' alignItems='flex-start'>
 					<ModalHeader>
-						<Heading>{movieDetails.Title}</Heading>
-						<Stack flexDirection='row' alignItems='baseline' opacity={0.4}>
-							<Text pr='10px'>{movieDetails.Year}</Text>
-							<Text>·</Text>
+						<Stack flexDirection='row'>
+							<Stack flexDirection='column'>
+								<Heading>{movieDetails.Title}</Heading>
+								<Stack flexDirection='row' alignItems='baseline' opacity='0.7'>
+									<Text pr='10px'>{movieDetails.Year}</Text>
+									<Text>·</Text>
 
-							<Text px='10px'>{movieDetails.Rated}</Text>
-							<Text>·</Text>
+									<Text px='10px'>{movieDetails.Rated}</Text>
+									<Text>·</Text>
 
-							<Text pl='10px'>{movieDetails.Runtime}</Text>
+									<Text pl='10px'>{minutesToHours(movieDetails.Runtime)}</Text>
+								</Stack>
+							</Stack>
 						</Stack>
 					</ModalHeader>
 					<ModalCloseButton />
