@@ -62,7 +62,7 @@ const MovieDetailsCard: React.FC<MovieDetailsCardProps> = ({
 					<Text opacity='.7' pr='10px'>
 						IMDb RATING
 					</Text>
-					<StarIcon />
+					<StarIcon color='#F5C518' />
 					<Text pl='10px'>{movieDetails.imdbRating}</Text>
 					<Text opacity='.7' pr='10px'>
 						/10
