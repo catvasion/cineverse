@@ -117,12 +117,18 @@ const App: React.FC = () => {
 		if (!areMovies) {
 			return 'No movies found';
 		}
+		if (isErrorTrailers) {
+			return 'An Error occured fetching movie details and trailer.';
+		}
 		return '';
 	};
 
 	return (
 		<Box p={4}>
 			<Header />
+			{isErrorTrailers && (
+				<ActionResponse responseMessage={handleResponseMessage()} />
+			)}
 
 			{hasClickedMovieCard &&
 				isMovieTrailerDetail(movieTrailersData) &&
